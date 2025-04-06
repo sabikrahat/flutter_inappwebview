@@ -12,23 +12,17 @@ import 'types/disposable.dart';
 class Util {
   static bool get isWeb => kIsWeb;
 
-  static bool get isAndroid =>
-      !isWeb && defaultTargetPlatform == TargetPlatform.android;
+  static bool get isAndroid => !isWeb && defaultTargetPlatform == TargetPlatform.android;
 
-  static bool get isIOS =>
-      !isWeb && defaultTargetPlatform == TargetPlatform.iOS;
+  static bool get isIOS => !isWeb && defaultTargetPlatform == TargetPlatform.iOS;
 
-  static bool get isMacOS =>
-      !isWeb && defaultTargetPlatform == TargetPlatform.macOS;
+  static bool get isMacOS => !isWeb && defaultTargetPlatform == TargetPlatform.macOS;
 
-  static bool get isWindows =>
-      !isWeb && defaultTargetPlatform == TargetPlatform.windows;
+  static bool get isWindows => !isWeb && defaultTargetPlatform == TargetPlatform.windows;
 
-  static bool get isLinux =>
-      !isWeb && defaultTargetPlatform == TargetPlatform.linux;
+  static bool get isLinux => !isWeb && defaultTargetPlatform == TargetPlatform.linux;
 
-  static bool get isFuchsia =>
-      !isWeb && defaultTargetPlatform == TargetPlatform.fuchsia;
+  static bool get isFuchsia => !isWeb && defaultTargetPlatform == TargetPlatform.fuchsia;
 }
 
 class IdGenerator {
@@ -405,8 +399,7 @@ extension UtilColor on Color {
     hexString = hexString.trim();
     if (hexString.length == 4) {
       // convert for example #f00 to #ff0000
-      hexString =
-          "#" + (hexString[1] * 2) + (hexString[2] * 2) + (hexString[3] * 2);
+      hexString = "#" + (hexString[1] * 2) + (hexString[2] * 2) + (hexString[3] * 2);
     }
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
@@ -420,11 +413,12 @@ extension UtilColor on Color {
     }
 
     rgbString = rgbString.trim();
-    var rgbValues = rgbString
-        .substring(4, rgbString.length - 1)
-        .split(",")
-        .map((rbgValue) => int.parse(rbgValue.trim()))
-        .toList();
+    var rgbValues =
+        rgbString
+            .substring(4, rgbString.length - 1)
+            .split(",")
+            .map((rbgValue) => int.parse(rbgValue.trim()))
+            .toList();
     return Color.fromRGBO(rgbValues[0], rgbValues[1], rgbValues[2], 1);
   }
 
@@ -434,13 +428,18 @@ extension UtilColor on Color {
     }
 
     rgbaString = rgbaString.trim();
-    var rgbaValues = rgbaString
-        .substring(5, rgbaString.length - 1)
-        .split(",")
-        .map((rbgValue) => rbgValue.trim())
-        .toList();
-    return Color.fromRGBO(int.parse(rgbaValues[0]), int.parse(rgbaValues[1]),
-        int.parse(rgbaValues[2]), double.parse(rgbaValues[3]));
+    var rgbaValues =
+        rgbaString
+            .substring(5, rgbaString.length - 1)
+            .split(",")
+            .map((rbgValue) => rbgValue.trim())
+            .toList();
+    return Color.fromRGBO(
+      int.parse(rgbaValues[0]),
+      int.parse(rgbaValues[1]),
+      int.parse(rgbaValues[2]),
+      double.parse(rgbaValues[3]),
+    );
   }
 
   static Color? fromHlsString(String? hlsString) {
@@ -449,11 +448,12 @@ extension UtilColor on Color {
     }
 
     hlsString = hlsString.trim();
-    var hlsValues = hlsString
-        .substring(4, hlsString.length - 1)
-        .split(",")
-        .map((rbgValue) => double.parse(rbgValue.trim()))
-        .toList();
+    var hlsValues =
+        hlsString
+            .substring(4, hlsString.length - 1)
+            .split(",")
+            .map((rbgValue) => double.parse(rbgValue.trim()))
+            .toList();
     var rgbValues = _hslToRgb(hlsValues[0], hlsValues[1], hlsValues[2]);
     return Color.fromRGBO(rgbValues[0], rgbValues[1], rgbValues[2], 1);
   }
@@ -464,14 +464,14 @@ extension UtilColor on Color {
     }
 
     hlsaString = hlsaString.trim();
-    var hlsaValues = hlsaString
-        .substring(5, hlsaString.length - 1)
-        .split(",")
-        .map((rbgValue) => double.parse(rbgValue.trim()))
-        .toList();
+    var hlsaValues =
+        hlsaString
+            .substring(5, hlsaString.length - 1)
+            .split(",")
+            .map((rbgValue) => double.parse(rbgValue.trim()))
+            .toList();
     var rgbaValues = _hslToRgb(hlsaValues[0], hlsaValues[1], hlsaValues[2]);
-    return Color.fromRGBO(
-        rgbaValues[0], rgbaValues[1], rgbaValues[2], hlsaValues[3]);
+    return Color.fromRGBO(rgbaValues[0], rgbaValues[1], rgbaValues[2], hlsaValues[3]);
   }
 
   static List<int> _hslToRgb(double h, double s, double l) {
@@ -507,7 +507,8 @@ extension UtilColor on Color {
 
 extension HexColor on Color {
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
-  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
+  String toHex({bool leadingHashSign = true}) =>
+      '${leadingHashSign ? '#' : ''}'
       '${alpha.toRadixString(16).padLeft(2, '0')}'
       '${red.toRadixString(16).padLeft(2, '0')}'
       '${green.toRadixString(16).padLeft(2, '0')}'
@@ -536,8 +537,7 @@ extension MapEdgeInsets on EdgeInsets {
     if (map == null) {
       return null;
     }
-    return EdgeInsets.fromLTRB(
-        map['left'], map['top'], map['right'], map['bottom']);
+    return EdgeInsets.fromLTRB(map['left'], map['top'], map['right'], map['bottom']);
   }
 
   Map<String, double> toJson() {
@@ -549,13 +549,14 @@ extension MapEdgeInsets on EdgeInsets {
   }
 }
 
-void debugLog(
-    {required DebugLoggingSettings debugLoggingSettings,
-    required String className,
-    required String method,
-    String? name,
-    String? id,
-    dynamic args}) {
+void debugLog({
+  required DebugLoggingSettings debugLoggingSettings,
+  required String className,
+  required String method,
+  String? name,
+  String? id,
+  dynamic args,
+}) {
   if (debugLoggingSettings.enabled) {
     for (var regExp in debugLoggingSettings.excludeFilter) {
       if (regExp.hasMatch(method)) return;
@@ -563,11 +564,11 @@ void debugLog(
     var maxLogMessageLength = debugLoggingSettings.maxLogMessageLength;
     String message =
         "(${Util.isWeb ? 'Web' : defaultTargetPlatform.name}) ${name ?? className}" +
-            (id != null ? ' ID $id' : '') +
-            ' calling "' +
-            method.toString() +
-            '" using ' +
-            args.toString();
+        (id != null ? ' ID $id' : '') +
+        ' calling "' +
+        method.toString() +
+        '" using ' +
+        args.toString();
     if (maxLogMessageLength >= 0 && message.length > maxLogMessageLength) {
       message = message.substring(0, maxLogMessageLength) + '...';
     }
@@ -612,18 +613,15 @@ extension InternalChannelController on ChannelController {
     return this._channel;
   }
 
-  set handler(Future<dynamic> Function(MethodCall call)? handler) =>
-      _handler = handler;
+  set handler(Future<dynamic> Function(MethodCall call)? handler) => _handler = handler;
 
   Future<dynamic> Function(MethodCall call)? get handler => _handler;
 
   bool get disposed => _channel == null;
 
   initMethodCallHandler() {
-    assert(
-        channel != null, 'Method Channel for ${runtimeType} not initialized!');
-    assert(handler != null,
-        'Method Call Handler for ${runtimeType} not initialized!');
+    assert(channel != null, 'Method Channel for ${runtimeType} not initialized!');
+    assert(handler != null, 'Method Call Handler for ${runtimeType} not initialized!');
 
     channel?.setMethodCallHandler((call) async {
       if (disposed) return null;
@@ -638,7 +636,7 @@ extension InternalChannelController on ChannelController {
 
   disposeChannel({bool removeMethodCallHandler = true}) {
     if (removeMethodCallHandler) {
-      channel?.setMethodCallHandler(null);
+      this._channel?.setMethodCallHandler(null);
     }
     channel = null;
     handler = null;
